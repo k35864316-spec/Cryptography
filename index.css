@@ -1,0 +1,229 @@
+:root {
+  --bg-color: #f0f4f8;
+  --sidebar-width: 200px;
+  --sidebar-collapsed-width: 60px; /* 닫혔을 때 너비 */
+}
+/* 전체 초기화 */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  display: flex; /* 사이드바와 메인 콘텐츠 정렬 */
+}
+
+/* --- 사이드바 스타일 --- */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow: hidden; /* x축 가리기 */
+  padding-top: 20px;
+  z-index: 100;
+  transition: all 0.3s ease; /* 부드러운 애니메이션 */
+}
+
+/* 닫힌 상태의 사이드바 */
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+/* 토글 버튼 스타일 */
+#toggle-btn {
+  background: #212529;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+#toggle-btn:hover {
+  background: #e11d48;
+}
+
+/* 사이드바가 닫혔을 때 메뉴 텍스트 숨기기 */
+.sidebar.collapsed .menu-list {
+  display: none;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 5px;
+  margin: 5px;
+}
+
+.sidebar a {
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #212529;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #ddd;
+  padding-left: 20px;
+  color: #e11d48;
+}
+
+/* --- 메인 콘텐츠 스타일 --- */
+.main-content {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease; /* 사이드바와 함께 움직이도록 */
+}
+
+/* 사이드바가 닫혔을 때 메인 콘텐츠 확장 */
+.main-content.expanded {
+  margin-left: var(--sidebar-collapsed-width);
+  width: calc(100% - var(--sidebar-collapsed-width));
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+header h1 {
+  text-align: center;
+  color: #334155;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+/* --- 타임라인 카드 스타일 --- */
+.phases-wrapper {
+  display: flex;
+  gap: 15px;
+  align-items: stretch;
+}
+
+.phase {
+  flex: 1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  transition: transform 0.3s ease;
+}
+
+.phase:hover {
+  transform: translateY(-5px); /* 살짝 떠오르는 효과 */
+}
+
+/* 각 단계별 배경색 */
+.Cryptography {
+  background-color: #7986cb;
+}
+.Ancient {
+  background-color: #4dabf7;
+}
+.Medieval {
+  background-color: #9575cd;
+}
+.Modern {
+  background-color: #5c6bc0;
+}
+.about {
+  background-color: #42a5f5;
+}
+
+.phase-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.phase-header h2 {
+  font-size: 1.1rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.card {
+  background: white;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #334155;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  line-height: 1.4;
+}
+
+.card.main {
+  font-weight: bold;
+  border-left: 4px solid rgba(0, 0, 0, 0.2);
+}
+
+.phase-footer {
+  margin-top: 20px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+/* --- 하단 타임라인 바 스타일 --- */
+.timeline-bar {
+  margin-top: 50px;
+  position: relative;
+  text-align: center;
+}
+
+.timeline-bar .line {
+  height: 4px;
+  background: #e11d48;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.timeline-bar .dots {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: -10px auto 0;
+}
+
+.timeline-bar .dot {
+  width: 16px;
+  height: 16px;
+  background: #e11d48;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.timeline-label {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #334155;
+}
