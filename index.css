@@ -12,40 +12,42 @@ body {
   display: flex; /* 사이드바와 메인 콘텐츠 정렬 */
 }
 
-/* --- 사이드바 스타일 --- */
+/* --- 사이드바 스타일 수정 --- */
 .sidebar {
   width: var(--sidebar-width);
   height: 100vh;
-  background-color: none;
   position: fixed;
   left: 0;
   top: 0;
-  overflow: hidden; /* x축 가리기 */
-  padding-top: 20px;
-  z-index: 100;
-  transition: all 0.3s ease; /* 부드러운 애니메이션 */
+  background-color: ghostwhite;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  overflow: hidden;
 }
-
-/* 닫힌 상태의 사이드바 */
+/* --- 사이드바 접혔을 때 (핵심 수정) --- */
 .sidebar.collapsed {
-  width: var(--sidebar-collapsed-width);
+  width: var(--sidebar-collapsed-width); /* 60px */
+  background-color: transparent; /* 배경색을 투명하게 해서 살구색 제거 */
+  box-shadow: none; /* 그림자가 있다면 제거 */
 }
 
-/* 토글 버튼 스타일 */
+/* 사이드바가 접히면 토글 버튼을 제외한 모든 메뉴 리스트 숨기기 */
+.sidebar.collapsed .menu-list {
+  display: none !important;
+}
+
+/* 토글 버튼 스타일 (접혔을 때도 잘 보이도록 배경색 유지) */
 #toggle-btn {
-  background: #212529;
+  background: #212529; /* 버튼은 어두운 색 유지 */
   color: white;
   border: none;
   padding: 10px 15px;
   cursor: pointer;
-  width: 100%;
+  width: 60px; /* 접혔을 때 너비에 맞춤 */
+  height: 50px;
   font-size: 20px;
-  margin-bottom: 10px;
+  display: block;
   transition: 0.3s;
-}
-
-#toggle-btn:hover {
-  background: #e11d48;
 }
 
 /* 사이드바가 닫혔을 때 메뉴 텍스트 숨기기 */
@@ -80,29 +82,30 @@ body {
   color: #e11d48;
 }
 
-/* --- 메인 콘텐츠 스타일 --- */
+/* --- 메인 콘텐츠 스타일 (카드 안 가려지게) --- */
 .main-content {
   margin-left: var(--sidebar-width);
   width: calc(100% - var(--sidebar-width));
-  padding: 20px;
+  background-color: #e0f2fe;
+  min-height: 100vh;
+  transition: all 0.3s ease;
   display: flex;
   justify-content: center;
-  transition: all 0.3s ease; /* 사이드바와 함께 움직이도록 */
+  align-items: center; /* 상단부터 정렬 */
+  padding-top: 50px;
 }
 
 /* 사이드바가 닫혔을 때 메인 콘텐츠 확장 */
 .main-content.expanded {
-  margin-left: var(--sidebar-collapsed-width);
-  width: calc(100% - var(--sidebar-collapsed-width));
+  margin-left: 0; /* 사이드바 배경이 투명하므로 0으로 붙여도 됨 */
+  width: 100%;
 }
 
 .container {
   width: 100%;
-  max-width: 1100px;
-  background: white;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  padding: 100px;
+  height: auto;
 }
 
 header h1 {
@@ -140,13 +143,10 @@ header h1 {
   background-color: #4dabf7;
 }
 .Medieval {
-  background-color: #9575cd;
+  background-color: #4dabf7;
 }
 .Modern {
-  background-color: #5c6bc0;
-}
-.about {
-  background-color: #42a5f5;
+  background-color: #7986cb;
 }
 
 .phase-header {
@@ -180,7 +180,6 @@ header h1 {
 
 .card.main {
   font-weight: bold;
-  border-left: 4px solid rgba(0, 0, 0, 0.2);
 }
 
 .phase-footer {
@@ -189,41 +188,4 @@ header h1 {
   color: white;
   font-weight: bold;
   font-size: 0.8rem;
-}
-
-/* --- 하단 타임라인 바 스타일 --- */
-.timeline-bar {
-  margin-top: 50px;
-  position: relative;
-  text-align: center;
-}
-
-.timeline-bar .line {
-  height: 4px;
-  background: #e11d48;
-  width: 90%;
-  margin: 0 auto;
-  border-radius: 2px;
-}
-
-.timeline-bar .dots {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  margin: -10px auto 0;
-}
-
-.timeline-bar .dot {
-  width: 16px;
-  height: 16px;
-  background: #e11d48;
-  border-radius: 50%;
-  border: 3px solid white;
-}
-
-.timeline-label {
-  margin-top: 15px;
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: #334155;
 }
